@@ -19,8 +19,10 @@ spec:
   - http:
       paths:
       - backend:
-          serviceName: {{ .Values.service.name }}
-          servicePort: 80
+          service:
+            name: {{ .Values.service.name }}
+            port:
+              number: 80
 {{- if eq "NodePort" .Values.jxRequirements.ingress.serviceType }}
         path: "/{{ .Release.Namespace }}/hook"
 {{- else if .Values.jxRequirements.ingress.domain }}
